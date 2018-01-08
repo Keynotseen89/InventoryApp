@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         setContentView(R.layout.activity_main);
 
         //Find the ListView which will be populated with the instock data
-        ListView inventoryListView = (ListView) findViewById(R.id.list);
+        ListView inventoryListView = findViewById(R.id.list);
 
         View emptyView = findViewById(R.id.empty_view);
         inventoryListView.setEmptyView(emptyView);
@@ -46,18 +46,16 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         inventoryListView.setAdapter(mCursorAdapter);
 
         //Setup the item click listener
-        /*inventoryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        inventoryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                //Create new intent to go into detail
-                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
 
+                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
                 Uri currentInventoryUri = ContentUris.withAppendedId(InventoryEntry.CONTENT_URI, id);
                 intent.setData(currentInventoryUri);
-                // Launch the {@link DetailActivity} to display the data for the current item
                 startActivity(intent);
             }
-        });*/
+        });
         //kick off the loader
         getLoaderManager().initLoader(INVENTORY_LOADER, null, this);
     }
@@ -120,8 +118,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         String[] projection = {
                 InventoryEntry._ID,
-                InventoryEntry.COLUMN_INVENTORY_NAME
-                //InventoryEntry.COLUMN_INVENTORY_PRICE
+                InventoryEntry.COLUMN_INVENTORY_NAME,
+                InventoryEntry.COLUMN_INVENTORY_PRICE
                 // InventoryEntry.COLUMN_INVENTORY_QUANTITY
         };
         return new CursorLoader(this,
