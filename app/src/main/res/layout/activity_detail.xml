@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".DetailActivity">
+
+    <!-- Overview category -->
+    <LinearLayout
+        android:id="@+id/container_name_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            style="@style/CategoryStyle"
+            android:paddingLeft="20dp"
+            android:text="Name" />
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:paddingLeft="4dp">
+
+            <!-- Name field -->
+            <EditText
+                android:id="@+id/inventory_name_id"
+                style="@style/EditorFieldStyle"
+                android:layout_marginRight="20dp"
+                android:editable="false"
+                android:inputType="text" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Price category -->
+    <LinearLayout
+        android:id="@+id/container_price_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
+
+        <!--- Label -->
+        <TextView
+            style="@style/CategoryStyle"
+            android:paddingLeft="20dp"
+            android:text="Price" />
+
+        <!-- Text Field  -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <!-- Name Filed -->
+            <EditText
+                android:id="@+id/inventory_price_id"
+                style="@style/EditorFieldStyle"
+                android:layout_marginRight="20dp"
+                android:inputType="number" />
+        </LinearLayout>
+    </LinearLayout>
+    <!-- Quantity category -->
+    <LinearLayout
+        android:id="@+id/containter_quantity_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="30dp"
+        android:paddingTop="20dp">
+
+        <!-- Label -->
+        <TextView
+            style="@style/CategoryStyle"
+            android:paddingLeft="20dp"
+            android:text="Quantity" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:paddingLeft="4dp">
+
+            <!-- Name Field -->
+            <EditText
+                android:id="@+id/inventory_quantity_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:fontFamily="sans-serif-light"
+                android:inputType="text"
+                android:textAppearance="?android:textAppearance" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/container_button_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="19dp"
+            android:layout_marginRight="20dp"
+            android:text="Order" />
+    </RelativeLayout>
+</LinearLayout>
