@@ -38,18 +38,18 @@ public class InventoryCursorAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         // Find fields to populate in inflate template
-        TextView nameTextView = (TextView) view.findViewById(R.id.name);
-        //TextView summaryTextView = (TextView) view.findViewById(R.id.summary);
+        TextView nameTextView = view.findViewById(R.id.name);
+        TextView summaryTextView = view.findViewById(R.id.summary);
 
         //Find the columns of pets attributes that we're interested in
         int nameColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_INVENTORY_NAME);
-        //  int priceColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_INVENTORY_PRICE);
+        int priceColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_INVENTORY_PRICE);
 
         //Read the inventory attribute from the cursor for the current inventory
         String itemName = cursor.getString(nameColumnIndex);
-        //Integer itemPrice = cursor.getInt(priceColumnIndex);
-
+        Integer itemPrice = cursor.getInt(priceColumnIndex);
+        String itemPriceValue = Integer.toString(itemPrice);
         nameTextView.setText(itemName);
-        // summaryTextView.setText(itemPrice);
+        summaryTextView.setText(itemPriceValue);
     }
 }
