@@ -47,8 +47,16 @@
             android:textAppearance="?android:textAppearance"
             android:textColor="#A2AAB0" />
 
-        <!-- <android.support.design.widget.FloatingActionButton
-             android:id="@+id/fab"
+        <Button
+            android:id="@+id/order_id"
+            android:text="Add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="16dp"/>
+        <!--<android.support.design.widget.FloatingActionButton
+             android:id="@+id/add_id"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:layout_alignParentBottom="true"
