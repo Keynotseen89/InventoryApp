@@ -7,10 +7,12 @@
     android:layout_height="match_parent"
     tools:context="com.example.quinatzin.inventoryapp.MainActivity">
 
+    <!-- ListView is set to focusable to access it's item list-->
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:focusable="true"/>
 
     <!-- Empty View for the list -->
     <RelativeLayout
@@ -43,7 +45,7 @@
             android:layout_centerHorizontal="true"
             android:fontFamily="sans-serif"
             android:paddingTop="8dp"
-            android:text="Get started by adding a few entry."
+            android:text="Click the button on the lower right to populate."
             android:textAppearance="?android:textAppearance"
             android:textColor="#A2AAB0" />
 
