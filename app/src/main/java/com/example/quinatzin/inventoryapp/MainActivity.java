@@ -17,6 +17,7 @@ import android.content.CursorLoader;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
@@ -66,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 startActivity(intent);
             }
         });
+
+        inventoryData();
         //kick off the loader
         getLoaderManager().initLoader(INVENTORY_LOADER, null, this);
     }
@@ -83,6 +86,53 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         Uri newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, values);
     }
+
+    /**
+     * Method used to create pre-existing data for inventory
+     */
+    private void inventoryData() {
+        // Create a ContentValue object where column names are keys
+        // and "Phone type" instock attributes are the values
+        ContentValues contentValues = new ContentValues();
+        //Uri used to insert into database
+        Uri newUri;
+        contentValues.put(InventoryEntry._ID, 1);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_NAME, "Iphone X");
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_PRICE, 1000);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_QUANTITY, 100);
+        newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, contentValues);
+
+        contentValues.put(InventoryEntry._ID, 2);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_NAME, "RAZOR");
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_PRICE, 600);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_QUANTITY, 50);
+        newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, contentValues);
+
+        contentValues.put(InventoryEntry._ID, 3);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_NAME, "Samsung Galaxy Note 3");
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_PRICE, 300);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_QUANTITY, 20);
+        newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, contentValues);
+
+        contentValues.put(InventoryEntry._ID, 4);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_NAME, "Samsung Note 8");
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_PRICE, 1000);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_QUANTITY, 40);
+        newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, contentValues);
+
+        contentValues.put(InventoryEntry._ID, 5);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_NAME, "Iphone 8");
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_PRICE, 600);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_QUANTITY, 50);
+        newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, contentValues);
+
+        contentValues.put(InventoryEntry._ID, 6);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_NAME, "Samsung s6");
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_PRICE, 700);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_QUANTITY, 45);
+        newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, contentValues);
+
+    }// end of method
 
     /**
      * method used to delete all entry form "Instock" table from Inventory database
@@ -120,6 +170,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     /**
      * Creates a projection of Columns to grab and display in ListView
+     *
      * @param id
      * @param args
      * @return CursorLoader
@@ -129,8 +180,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         String[] projection = {
                 InventoryEntry._ID,
                 InventoryEntry.COLUMN_INVENTORY_NAME,
-                InventoryEntry.COLUMN_INVENTORY_PRICE
-                // InventoryEntry.COLUMN_INVENTORY_QUANTITY
+                InventoryEntry.COLUMN_INVENTORY_PRICE,
+                InventoryEntry.COLUMN_INVENTORY_QUANTITY
         };
         return new CursorLoader(this,
                 InventoryEntry.CONTENT_URI,
@@ -142,6 +193,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     /**
      * grabs the data from the Loader and swaps it into mCursorAdapter
+     *
      * @param loader
      * @param data
      */
@@ -152,6 +204,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     /**
      * Clears the Loader
+     *
      * @param loader
      */
     @Override
