@@ -203,6 +203,7 @@ public class InventoryProvider extends ContentProvider {
         // return database.update(InventoryEntry.TABLE_NAME, values, selection,selectionArgs);
     }
 
+
     /**
      * Delete the data at the given selection  and selection arguments
      */
