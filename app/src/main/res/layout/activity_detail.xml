@@ -1,118 +1,228 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".DetailActivity">
 
-    <!-- Overview category -->
     <LinearLayout
-        android:id="@+id/container_name_id"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <!-- Label -->
-        <TextView
-            style="@style/CategoryStyle"
-            android:paddingLeft="20dp"
-            android:text="Name"
-            android:textColor="@color/detailColorPrimary" />
-        <!-- Input fields -->
+
+        <!-- Overview category -->
         <LinearLayout
-            android:layout_width="0dp"
+            android:id="@+id/container_name_id"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:orientation="vertical"
-            android:paddingLeft="4dp">
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
 
-            <!-- Name field -->
-            <EditText
-                android:id="@+id/inventory_name_id"
-                style="@style/EditorFieldStyle"
-                android:layout_marginRight="20dp"
-                android:editable="false"
-                android:inputType="text" />
+            <!-- Label -->
+            <TextView
+                style="@style/CategoryStyle"
+                android:paddingLeft="20dp"
+                android:text="Name"
+                android:textColor="@color/detailColorPrimary" />
+            <!-- Input fields -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:paddingLeft="4dp">
+
+                <!-- Name field -->
+                <EditText
+                    android:id="@+id/inventory_name_id"
+                    style="@style/EditorFieldStyle"
+                    android:layout_marginRight="20dp"
+                    android:editable="false"
+                    android:inputType="text" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 
-    <!-- Price category -->
-    <LinearLayout
-        android:id="@+id/container_price_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="20dp">
-
-        <!--- Label -->
-        <TextView
-            style="@style/CategoryStyle"
-            android:paddingLeft="20dp"
-            android:text="Price"
-            android:textColor="@color/detailColorPrimary" />
-
-        <!-- Text Field  -->
+        <!-- Price category -->
         <LinearLayout
-            android:layout_width="0dp"
+            android:id="@+id/container_price_id"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:paddingTop="20dp">
 
-            <!-- Name Filed -->
-            <EditText
-                android:id="@+id/inventory_price_id"
-                style="@style/EditorFieldStyle"
-                android:layout_marginRight="20dp"
-                android:inputType="number" />
+            <!--- Label -->
+            <TextView
+                style="@style/CategoryStyle"
+                android:paddingLeft="20dp"
+                android:text="Price"
+                android:textColor="@color/detailColorPrimary" />
+
+            <!-- Text Field  -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <!-- Name Filed -->
+                <EditText
+                    android:id="@+id/inventory_price_id"
+                    style="@style/EditorFieldStyle"
+                    android:layout_marginRight="20dp"
+                    android:inputType="number" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-    <!-- Quantity category -->
-    <LinearLayout
-        android:id="@+id/containter_quantity_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="30dp"
-        android:paddingTop="20dp">
-
-        <!-- Label -->
-        <TextView
-            style="@style/CategoryStyle"
-            android:paddingLeft="20dp"
-            android:text="Quantity"
-            android:textColor="@color/detailColorPrimary" />
-
+        <!-- Quantity category -->
         <LinearLayout
-            android:layout_width="0dp"
+            android:id="@+id/containter_quantity_id"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:orientation="vertical"
-            android:paddingLeft="4dp">
+            android:orientation="horizontal"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp">
 
-            <!-- Name Field -->
-            <EditText
-                android:id="@+id/inventory_quantity_id"
-                style="@style/EditorFieldStyle"
-                android:layout_marginRight="20dp"
-                android:inputType="number" />
+            <!-- Label -->
+            <TextView
+                style="@style/CategoryStyle"
+                android:paddingLeft="20dp"
+                android:text="Quantity"
+                android:textColor="@color/detailColorPrimary" />
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="horizontal"
+                android:paddingLeft="4dp">
+
+                <Button
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:text="-" />
+
+                <!-- Name Field -->
+                <EditText
+                    android:id="@+id/inventory_quantity_id"
+                    style="@style/EditorFieldStyle"
+                    android:layout_width="72dp"
+                    android:inputType="number" />
+
+                <Button
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:text="+" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/container_button_id"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <Button
-            android:layout_width="wrap_content"
+        <!-- supplier category -->
+        <LinearLayout
+            android:id="@+id/container_supplier_id"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="19dp"
-            android:layout_marginRight="20dp"
-            android:text="Order" />
-    </RelativeLayout>
-</LinearLayout>
+            android:orientation="horizontal"
+            android:paddingTop="20dp">
+
+            <!--- Label -->
+            <TextView
+                style="@style/CategoryStyle"
+                android:paddingLeft="20dp"
+                android:text="Supplier Name"
+                android:textColor="@color/detailColorPrimary" />
+
+            <!-- Text Field  -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <!-- Supplier Name Filed -->
+                <EditText
+                    android:id="@+id/inventory_supplier_id"
+                    style="@style/EditorFieldStyle"
+                    android:layout_marginRight="20dp"
+                    android:inputType="number" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Supplier Phone category -->
+        <LinearLayout
+            android:id="@+id/container_supplierPhone_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="20dp">
+
+            <!--- Label -->
+            <TextView
+                style="@style/CategoryStyle"
+                android:paddingLeft="20dp"
+                android:text="Supplier Phone"
+                android:textColor="@color/detailColorPrimary" />
+
+            <!-- Text Field  -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <!-- Name Filed -->
+                <EditText
+                    android:id="@+id/inventory_supplierPhone_id"
+                    style="@style/EditorFieldStyle"
+                    android:layout_marginRight="20dp"
+                    android:inputType="number" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Supplier Email category -->
+        <LinearLayout
+            android:id="@+id/container_supplierEmail_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="20dp">
+
+            <!--- Label -->
+            <TextView
+                style="@style/CategoryStyle"
+                android:paddingLeft="20dp"
+                android:text="Supplier E-mail"
+                android:textColor="@color/detailColorPrimary" />
+
+            <!-- Text Field  -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <!-- Name Filed -->
+                <EditText
+                    android:id="@+id/inventory_supplierEmail_id"
+                    style="@style/EditorFieldStyle"
+                    android:layout_marginRight="20dp"
+                    android:inputType="number" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_button_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="19dp"
+                android:layout_marginRight="20dp"
+                android:text="Order" />
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>
