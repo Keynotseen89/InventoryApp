@@ -50,6 +50,10 @@ public final class InventoryContract {
         public static final String COLUMN_INVENTORY_NAME = "name";
         public static final String COLUMN_INVENTORY_PRICE = "price";
         public static final String COLUMN_INVENTORY_QUANTITY = "quantity";
+        public static final String COLUMN_INVENTORY_SUPPLIER = "supplier";
+        public static final String COLUMN_INVENTORY_SUPPLIER_PHONE = "supplierPhoneNumber";
+        public static final String COLUMN_INVENTORY_SUPPLIER_EMAIL = "supplierEmail";
+        public static final String COLUMN_INVENTORY_IMAGE = "image";
 
     }
 
