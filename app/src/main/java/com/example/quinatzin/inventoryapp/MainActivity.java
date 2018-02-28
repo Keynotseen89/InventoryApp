@@ -20,8 +20,12 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.quinatzin.inventoryapp.data.InventoryContract.InventoryEntry;
+import com.example.quinatzin.inventoryapp.data.InventoryDbHelper;
+import com.example.quinatzin.inventoryapp.data.InventoryProvider;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -29,11 +33,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     //Global CursorAdapter
     InventoryCursorAdapter mCursorAdapter;
+    ListView inventoryListView;
+    InventoryDbHelper mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mDatabase = new InventoryDbHelper(this);
 
         // Setup FAB to open Detail Activity
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
@@ -45,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             }
         });
         //Find the ListView which will be populated with the instock data
-        ListView inventoryListView = findViewById(R.id.list);
+        inventoryListView = findViewById(R.id.list);
 
         View emptyView = findViewById(R.id.empty_view);
         inventoryListView.setEmptyView(emptyView);
@@ -68,10 +75,21 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             }
         });
 
-        inventoryData();
+        //inventoryData();
         //kick off the loader
         getLoaderManager().initLoader(INVENTORY_LOADER, null, this);
+
     }
+
+    /**
+     * reduce quantity by one
+     */
+    public void onSaleBtn(long id, int quantity) {
+        mDatabase.onItemSell(id, quantity);
+        mCursorAdapter.swapCursor(mDatabase.readItem());
+
+    }
+
 
     /**
      * Helper method to insert hardcoded inventory item into database. For debuging
@@ -79,60 +97,73 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private void insertInventory() {
         //Create a ContentValue object where column names are keys
         // and "Galaxy" instock attributes are the values.
-        ContentValues values = new ContentValues();
-        values.put(InventoryEntry.COLUMN_INVENTORY_NAME, "Samsung Galaxy");
-        values.put(InventoryEntry.COLUMN_INVENTORY_PRICE, 800);
-        values.put(InventoryEntry.COLUMN_INVENTORY_QUANTITY, 20);
-
-        Uri newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, values);
-    }
-
-    /**
-     * Method used to create pre-existing data for inventory
-     */
-    private void inventoryData() {
-        // Create a ContentValue object where column names are keys
-        // and "Phone type" instock attributes are the values
         ContentValues contentValues = new ContentValues();
-        //Uri used to insert into database
         Uri newUri;
-        contentValues.put(InventoryEntry._ID, 1);
+
+        String supplierName = "Johne Smite";
+        String phoneNumber = "(909)222-1544";
+        String supplierEmail = "examplesupplier@textemail.com";
+        // contentValues.put(InventoryEntry._ID, 1);
         contentValues.put(InventoryEntry.COLUMN_INVENTORY_NAME, "Iphone X");
         contentValues.put(InventoryEntry.COLUMN_INVENTORY_PRICE, 1000);
         contentValues.put(InventoryEntry.COLUMN_INVENTORY_QUANTITY, 100);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_SUPPLIER, supplierName);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_SUPPLIER_PHONE, phoneNumber);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_SUPPLIER_EMAIL, supplierEmail);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_IMAGE, "android.resource://com.example.quinatzin.inventoryapp/drawable/iphone10");
         newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, contentValues);
 
-        contentValues.put(InventoryEntry._ID, 2);
+        //contentValues.put(InventoryEntry._ID, 2);
         contentValues.put(InventoryEntry.COLUMN_INVENTORY_NAME, "RAZOR");
         contentValues.put(InventoryEntry.COLUMN_INVENTORY_PRICE, 600);
         contentValues.put(InventoryEntry.COLUMN_INVENTORY_QUANTITY, 50);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_SUPPLIER, supplierName);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_SUPPLIER_PHONE, phoneNumber);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_SUPPLIER_EMAIL, supplierEmail);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_IMAGE, "android.resource://com.example.quinatzin.inventoryapp/drawable/razerphone");
         newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, contentValues);
 
-        contentValues.put(InventoryEntry._ID, 3);
+        //contentValues.put(InventoryEntry._ID, 3);
         contentValues.put(InventoryEntry.COLUMN_INVENTORY_NAME, "Samsung Galaxy Note 3");
         contentValues.put(InventoryEntry.COLUMN_INVENTORY_PRICE, 300);
         contentValues.put(InventoryEntry.COLUMN_INVENTORY_QUANTITY, 20);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_SUPPLIER, supplierName);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_SUPPLIER_PHONE, phoneNumber);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_SUPPLIER_EMAIL, supplierEmail);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_IMAGE, "android.resource://com.example.quinatzin.inventoryapp/drawable/note3");
         newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, contentValues);
 
-        contentValues.put(InventoryEntry._ID, 4);
+        //contentValues.put(InventoryEntry._ID, 4);
         contentValues.put(InventoryEntry.COLUMN_INVENTORY_NAME, "Samsung Note 8");
         contentValues.put(InventoryEntry.COLUMN_INVENTORY_PRICE, 1000);
         contentValues.put(InventoryEntry.COLUMN_INVENTORY_QUANTITY, 40);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_SUPPLIER, supplierName);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_SUPPLIER_PHONE, phoneNumber);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_SUPPLIER_EMAIL, supplierEmail);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_IMAGE, "android.resource://com.example.quinatzin.inventoryapp/drawable/note8");
         newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, contentValues);
 
-        contentValues.put(InventoryEntry._ID, 5);
+        //contentValues.put(InventoryEntry._ID, 5);
         contentValues.put(InventoryEntry.COLUMN_INVENTORY_NAME, "Iphone 8");
         contentValues.put(InventoryEntry.COLUMN_INVENTORY_PRICE, 600);
         contentValues.put(InventoryEntry.COLUMN_INVENTORY_QUANTITY, 50);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_SUPPLIER, supplierName);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_SUPPLIER_PHONE, phoneNumber);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_SUPPLIER_EMAIL, supplierEmail);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_IMAGE, "android.resource://com.example.quinatzin.inventoryapp/drawable/iphone8");
         newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, contentValues);
 
-        contentValues.put(InventoryEntry._ID, 6);
+        //contentValues.put(InventoryEntry._ID, 6);
         contentValues.put(InventoryEntry.COLUMN_INVENTORY_NAME, "Samsung s6");
         contentValues.put(InventoryEntry.COLUMN_INVENTORY_PRICE, 700);
         contentValues.put(InventoryEntry.COLUMN_INVENTORY_QUANTITY, 45);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_SUPPLIER, supplierName);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_SUPPLIER_PHONE, phoneNumber);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_SUPPLIER_EMAIL, supplierEmail);
+        contentValues.put(InventoryEntry.COLUMN_INVENTORY_IMAGE, "android.resource://com.example.quinatzin.inventoryapp/drawable/samsung_s6");
         newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, contentValues);
 
-    }// end of method
+    }
 
     /**
      * method used to delete all entry form "Instock" table from Inventory database
@@ -181,7 +212,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 InventoryEntry._ID,
                 InventoryEntry.COLUMN_INVENTORY_NAME,
                 InventoryEntry.COLUMN_INVENTORY_PRICE,
-                InventoryEntry.COLUMN_INVENTORY_QUANTITY
+                InventoryEntry.COLUMN_INVENTORY_QUANTITY,
+                InventoryEntry.COLUMN_INVENTORY_IMAGE
         };
         return new CursorLoader(this,
                 InventoryEntry.CONTENT_URI,
