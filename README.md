@@ -20,7 +20,7 @@
 	Order more item from supplier with email or phone number
 	Upload images with item when entering new product
 	
-	# Screenshot
-![Screenshot](InventoryImage.PNG)![Screenshot](InventoryImage2.PNG)
+# Screenshot
+	![Screenshot](InventoryImage.PNG)![Screenshot](InventoryImage2.PNG)
 	
 	
